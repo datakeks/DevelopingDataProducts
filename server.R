@@ -1,5 +1,6 @@
 # Load libraries
 library(shiny) # to create the app
+library(curl) # dependency
 library(jsonlite) # to fetch the data from the UNHCR API
 library(dplyr) # to wrangle the data and calculate additional values
 library(ggplot2) # to display the data
