@@ -11,9 +11,9 @@ shinyServer(function(input, output) {
         MedArr <- fromJSON ("http://data.unhcr.org/api/stats/mediterranean/monthly_arrivals_by_location.json?")
         
         # Subsetting the MedArr data by country, determined by user's the radio button selection
-         MedSelect <- reactive({
-                 subset(MedArr, country_en==input$radioSel)
-         })
+        MedSelect <- reactive({
+                subset(MedArr, country_en==input$radioSel)
+        })
         
         # Subsetting the MedArr data by the second subset of year, determined by the user's drop down selection
         MedSelYr <- reactive({
@@ -40,12 +40,12 @@ shinyServer(function(input, output) {
         output$totalArrive <- renderText({
                 #span("groups of words", style = "color:blue"),
                 paste(sum(unique(MedArrLoc()$LocTot))," total number of arrivals to ", input$radioSel,
-                 "in", input$yearArr, ".")
+                      "in", input$yearArr, ".")
         })
         
         # Sidebar statistics calculating and displaying the year's average total number of arrivals for each location location
         output$tableText = renderText({
-                paste("Average monthly number of arrivals for ", input$yearArr, "by arrival location in", input$radioSel, ":") 
+                paste("Average monthly number of arrivals for ", input$yearArr, "by arrival location in", input$radioSel) 
         })
         output$locMean = renderTable({
                 MedArrLoc() %>% summarise(average = mean(value))
